@@ -1,16 +1,16 @@
 """The main colour matching module"""
 
+import colorsys
 from operator import itemgetter
 
 import numpy as np
-
-# TODO would it be better to use HSV colours instead of RGB?
 
 
 class Colour:
     def __init__(self, name=None):
         self.name = name
         self._rgb = None
+        self._hsv = None
 
     @classmethod
     def from_rgb(cls, rgb, **kwargs):
@@ -24,8 +24,14 @@ class Colour:
             return ValueError("No RGB value")
         return self._rgb
 
+    @property
+    def hsv(self):
+        if self._hsv is None:
+            self._hsv = np.array(colorsys.rgb_to_hsv(*self.rgb))
+        return self._hsv
+
     def distance_from(self, other):
-        return np.linalg.norm(self.rgb - other.rgb)
+        return np.linalg.norm(self.hsv - other.hsv)
 
 
 # TODO add the 16 named colours from the HTML 4.01 specification
