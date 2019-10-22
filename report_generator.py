@@ -27,7 +27,7 @@ REPORT_HEADER = """\
 REPORT_TEMPLATE = """\
 <li>
     <img style="max-height: 300px" src="{url}" alt="{filename}" />
-    <div>Main colour: <span>{colour}</span></div>
+    <div>Main colours: <span>{colour}</span></div>
 </li>
 """
 
@@ -42,11 +42,11 @@ def report_for_image(image):
     """
     Use the colour_matcher library to generate a colour report for the image
     """
-    colour_name = colour_matcher.get_main_colour_from_image(image)
+    colours = colour_matcher.get_main_colours_from_image(image)
     return REPORT_TEMPLATE.format(
         url=f"file://{image.filename}",
         filename=pathlib.Path(image.filename).name,
-        colour=colour_name or "Unknown",
+        colour=colours,
     ).encode("utf-8")
 
 

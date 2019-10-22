@@ -54,7 +54,7 @@ NAMED_COLOURS = frozenset([
 ])
 
 
-def get_main_colour_from_image(image):
+def get_main_colours_from_image(image, _precision=3):
     pixel_count = np.product(image.size)
     colour_list = sorted(image.getcolors(pixel_count),
                          key=itemgetter(0), reverse=True)
@@ -64,7 +64,16 @@ def get_main_colour_from_image(image):
         distance = main_colour.distance_from(colour)
         if distance == 0:
             # Colour is exact so no need to keep looking
-            return colour.name
+            return [(colour.name, distance)]
         else:
             distances[colour.name] = distance
-    return min(distances.items(), key=itemgetter(1))[0]
+    distances = sorted(distances.items(), key=itemgetter(1))
+    closest_distances = [tuple(distances[0])]
+    latest = round(distances[0][1], _precision)
+    for name, distance in distances[1:]:
+        dround = round(distance, _precision)
+        if dround == latest:
+            closest_distances.append((name, distance))
+        else:
+            break
+    return closest_distances
