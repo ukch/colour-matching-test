@@ -34,12 +34,23 @@ class Colour:
         return np.linalg.norm(self.hsv - other.hsv)
 
 
-# TODO add the 16 named colours from the HTML 4.01 specification
+# The 16 named colours from the HTML 4.01 specification
 NAMED_COLOURS = frozenset([
-    Colour.from_rgb([000, 000, 000], name="black"),
+    Colour.from_rgb([255, 255, 255], name="white"),
+    Colour.from_rgb([192, 192, 192], name="silver"),
     Colour.from_rgb([128, 128, 128], name="grey"),
-    Colour.from_rgb([000, 000, 128], name="navy"),
+    Colour.from_rgb([000, 000, 000], name="black"),
+    Colour.from_rgb([255, 000, 000], name="red"),
+    Colour.from_rgb([128, 000, 000], name="maroon"),
+    Colour.from_rgb([255, 255, 000], name="yellow"),
+    Colour.from_rgb([128, 128, 000], name="olive"),
+    Colour.from_rgb([000, 255, 000], name="lime"),
+    Colour.from_rgb([000, 128, 000], name="green"),
+    Colour.from_rgb([000, 255, 255], name="aqua"),
     Colour.from_rgb([000, 128, 128], name="teal"),
+    Colour.from_rgb([000, 000, 128], name="navy"),
+    Colour.from_rgb([255, 000, 255], name="fuschia"),
+    Colour.from_rgb([128, 000, 128], name="purple"),
 ])
 
 
