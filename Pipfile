@@ -6,10 +6,12 @@ verify_ssl = true
 [dev-packages]
 ipython = "*"
 flake8 = "*"
+pytest = "*"
 
 [packages]
 pillow = "*"
 numpy = "*"
+requests = "*"
 
 [requires]
 python_version = "3.7"

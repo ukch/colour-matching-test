@@ -56,6 +56,8 @@ NAMED_COLOURS = frozenset([
 
 def get_main_colours_from_image(image, _precision=3):
     pixel_count = np.product(image.size)
+    # This is only taking the #1 most common colour. For images with a more
+    # diverse palette this may have unexpected results.
     colour_list = sorted(image.getcolors(pixel_count),
                          key=itemgetter(0), reverse=True)
     main_colour = Colour.from_rgb(colour_list[0][1])
