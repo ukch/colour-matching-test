@@ -31,6 +31,7 @@ class Colour:
         return self._hsv
 
     def distance_from(self, other):
+        # Calculate the euclidean distance between self and other
         return np.linalg.norm(self.hsv - other.hsv)
 
 
